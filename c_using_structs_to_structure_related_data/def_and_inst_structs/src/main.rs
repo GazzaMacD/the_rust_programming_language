@@ -21,6 +21,42 @@ fn main() {
     let user2 = create_user(email2, username2);
     print_user(&user2);
     print_user(&user2);
+
+    // Mutability
+    let mut user3 = User {
+        email: String::from("john@email.com"),
+        username: String::from("john"),
+        active: true,
+        sign_in_count: 1,
+    };
+    print_user(&user3);
+    user3.email = String::from("john.j@gmail.com");
+    println!("User email has been updated");
+    print_user(&user3);
+
+    // ===== Struct update syntax - ====
+    //  user4 will get new values for email and username
+    // and then active and sign_in_count will use the user3 values
+    // note: in this case user 3 and user 4 can be used again
+    // because active and sign_in_count are 'copy'
+
+    let user4 = User {
+        email: String::from("sarah@email.com"),
+        username: String::from("sarah"),
+        ..user3
+    };
+    print_user(&user3);
+    print_user(&user4);
+    // note: in this case user 4 cannot be used after this as
+    // email and username are 'move' and not 'copy'
+
+    let user5 = User {
+        active: false,
+        sign_in_count: 2,
+        ..user4
+    };
+    print_user(&user5);
+    // print_user(&user4); <-- this line would error
 }
 
 fn create_user(email: String, username: String) -> User {
