@@ -34,8 +34,7 @@ mod user_utils {
 }
 
 mod user_examples {
-    use crate::user_utils;
-    use crate::user_utils::User;
+    use crate::{user_utils, user_utils::User};
 
     pub fn immutable_users() {
         // create unmutable user
