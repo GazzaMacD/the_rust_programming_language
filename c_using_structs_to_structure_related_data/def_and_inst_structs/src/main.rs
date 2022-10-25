@@ -35,10 +35,11 @@ mod user_utils {
 
 mod user_examples {
     use crate::user_utils;
+    use crate::user_utils::User;
 
     pub fn immutable_users() {
         // create unmutable user
-        let user1 = user_utils::User {
+        let user1 = User {
             email: String::from("myemail@email.com"),
             username: String::from("My Name"),
             active: true,
@@ -55,7 +56,7 @@ mod user_examples {
 
     pub fn mutable_users() {
         // Mutability
-        let mut user3 = user_utils::User {
+        let mut user3 = User {
             email: String::from("john@email.com"),
             username: String::from("john"),
             active: true,
@@ -73,14 +74,14 @@ mod user_examples {
         // and then active and sign_in_count will use the user3 values
         // note: in this case user 3 and user 4 can be used again
         // because active and sign_in_count are 'copy'
-        let user4 = user_utils::User {
+        let user4 = User {
             email: String::from("john@email.com"),
             username: String::from("john"),
             active: true,
             sign_in_count: 1,
         };
 
-        let user5 = user_utils::User {
+        let user5 = User {
             email: String::from("sarah@email.com"),
             username: String::from("sarah"),
             ..user4
@@ -90,7 +91,7 @@ mod user_examples {
         // note: in this case user 4 cannot be used after this as
         // email and username are 'move' and not 'copy'
 
-        let user5 = user_utils::User {
+        let user5 = User {
             active: false,
             sign_in_count: 2,
             ..user4
