@@ -34,39 +34,37 @@ mod user_utils {
 }
 
 mod user_examples {
-    use crate::user_utils::create_user;
-    use crate::user_utils::print_user;
-    use crate::user_utils::User;
+    use crate::user_utils;
 
     pub fn immutable_users() {
         // create unmutable user
-        let user1 = User {
+        let user1 = user_utils::User {
             email: String::from("myemail@email.com"),
             username: String::from("My Name"),
             active: true,
             sign_in_count: 1,
         };
-        print_user(&user1);
+        user_utils::print_user(&user1);
 
         let email2 = String::from("bob@gmail");
         let username2 = String::from("bob");
-        let user2 = create_user(email2, username2);
-        print_user(&user2);
-        print_user(&user2);
+        let user2 = user_utils::create_user(email2, username2);
+        user_utils::print_user(&user2);
+        user_utils::print_user(&user2);
     }
 
     pub fn mutable_users() {
         // Mutability
-        let mut user3 = User {
+        let mut user3 = user_utils::User {
             email: String::from("john@email.com"),
             username: String::from("john"),
             active: true,
             sign_in_count: 1,
         };
-        print_user(&user3);
+        user_utils::print_user(&user3);
         user3.email = String::from("john.j@gmail.com");
         println!("User email has been updated");
-        print_user(&user3);
+        user_utils::print_user(&user3);
     }
 
     pub fn struct_update_syntax() {
@@ -75,29 +73,29 @@ mod user_examples {
         // and then active and sign_in_count will use the user3 values
         // note: in this case user 3 and user 4 can be used again
         // because active and sign_in_count are 'copy'
-        let user4 = User {
+        let user4 = user_utils::User {
             email: String::from("john@email.com"),
             username: String::from("john"),
             active: true,
             sign_in_count: 1,
         };
 
-        let user5 = User {
+        let user5 = user_utils::User {
             email: String::from("sarah@email.com"),
             username: String::from("sarah"),
             ..user4
         };
-        print_user(&user4);
-        print_user(&user5);
+        user_utils::print_user(&user4);
+        user_utils::print_user(&user5);
         // note: in this case user 4 cannot be used after this as
         // email and username are 'move' and not 'copy'
 
-        let user5 = User {
+        let user5 = user_utils::User {
             active: false,
             sign_in_count: 2,
             ..user4
         };
-        print_user(&user5);
+        user_utils::print_user(&user5);
         // print_user(&user4); <-- this line would error
     }
 }
