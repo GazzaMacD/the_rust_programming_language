@@ -16,6 +16,12 @@ impl Rectangle {
     pub fn can_hold(&self, other: &Rectangle) -> bool {
         self.width > other.width && self.height > other.height
     }
+    pub fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
 }
 // ** note that &self is shorthand for self: &Self where Self is the struct the method belongs to.
 //Just as in the las program we borrow an immutable reference to the Rectangle instance as we are
@@ -63,4 +69,11 @@ fn main() {
     println!("\n --- using other parameters than self --- \n");
     println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
     println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+
+    // Using associated functions, defined within impl block but not using
+    // self, hence not methods are called using the :: syntax
+    // ** Note: :: syntax is also used for namespaces created by modules.
+    println!("\n --- using other parameters than self --- \n");
+    let square1 = Rectangle::square(40);
+    println!("This is a sqaure: {:#?}", square1);
 }
