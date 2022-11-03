@@ -76,4 +76,6 @@ fn main() {
     println!("\n --- using other parameters than self --- \n");
     let square1 = Rectangle::square(40);
     println!("This is a sqaure: {:#?}", square1);
+
+    // Final note is that structs etc can have two or more impl {} code blocks, all being associated with that type
 }
