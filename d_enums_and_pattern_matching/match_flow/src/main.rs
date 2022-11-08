@@ -75,4 +75,16 @@ impl Coin {
 fn main() {
     let coin1 = Coin::Quarter(UsState::Alabama);
     coin1.value_in_cents();
+    let five = Some(5);
+    let none = None;
+    let res = plus_one(five);
+    let neg_res = plus_one(none);
+    println!("Res: {:#?} and neg_res: {:#?}", res, neg_res);
+}
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
 }
