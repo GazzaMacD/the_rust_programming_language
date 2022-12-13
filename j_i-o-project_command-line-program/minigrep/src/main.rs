@@ -21,6 +21,13 @@ struct Config {
 
 impl Config {
     fn new(args: &[String]) -> Config {
+        if args.len() < 3 {
+            panic!(
+                "\nMore args needed. Try cargo run -- <search word> <path to file>\n
+                Example: cargo run -- Bob my_files/bob_email.txt\n
+            "
+            )
+        }
         let query = args[1].clone();
         let file_path = args[2].clone();
         Config { query, file_path }
